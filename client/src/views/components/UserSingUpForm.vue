@@ -2,7 +2,12 @@
 // --- Import Vue ---
 import { ref } from "vue";
 
-// import LucideSpinner from '~icons/lucide/loader-2'
+// --- Router Import ---
+import {
+    useRouter
+} from "vue-router";
+
+
 // --- Import Utils ---
 import { cn } from "@/lib/utils";
 
@@ -11,6 +16,9 @@ import { useForm } from "vee-validate";
 
 // --- Import Schema ---
 import { singUpSchema } from "@/form-schema/singup";
+
+//NOTE Use Router
+const router = useRouter();
 
 //NOTE - useForm
 const { handleSubmit } = useForm({
@@ -28,6 +36,12 @@ const onSubmit = handleSubmit(async (values) => {
         isLoading.value = false;
     }, 3000);
 });
+
+//NOTE - handleClickLogin
+const handleClickLogin = () => {
+    router.push('/login')
+}
+
 </script>
 
 <template>
@@ -96,9 +110,8 @@ const onSubmit = handleSubmit(async (values) => {
                 </span>
             </div>
         </div>
-        <Button variant="outline" type="button" :disabled="isLoading">
+        <Button variant="outline" type="button" :disabled="isLoading" @click="handleClickLogin">
             <!-- <LucideSpinner v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" /> -->
-
             Giriş Yap
         </Button>
     </div>
