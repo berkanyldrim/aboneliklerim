@@ -6,10 +6,23 @@ import {
   RouteLocationNormalized,
 } from "vue-router";
 
+import AppLayout from "@/layout/AppLayout.vue";
+
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    redirect: "/login",
+    component: AppLayout,
+    children:[
+    {
+      path: "/",
+      name: "dashboard",
+      meta: {
+        type: "dashboard",
+      },
+      component: () => import("@/views/Dashboard.vue"),
+    },
+
+    ]
   },
   {
     path: "/login",
