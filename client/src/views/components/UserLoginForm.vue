@@ -2,7 +2,12 @@
 // --- Import Vue ---
 import { ref } from "vue";
 
-// import LucideSpinner from '~icons/lucide/loader-2'
+// --- Import Vue Router ---
+import { useRouter } from "vue-router";
+
+// --- Lucide Import ---
+import { Loader } from 'lucide-vue-next';
+
 // --- Import Utils ---
 import { cn } from "@/lib/utils";
 
@@ -11,6 +16,9 @@ import { useForm } from "vee-validate";
 
 // --- Import Schema ---
 import { loginSchema } from "@/form-schema/login";
+
+//NOTE - useRouter
+const router = useRouter();
 
 //NOTE - useForm
 const { handleSubmit } = useForm({
@@ -28,6 +36,11 @@ const onSubmit = handleSubmit(async (values) => {
     isLoading.value = false;
   }, 3000);
 });
+
+//NOTE - handleClickLogin
+const handleClickLogin = () => {
+  router.push('/singup')
+}
 </script>
 
 <template>
@@ -39,16 +52,8 @@ const onSubmit = handleSubmit(async (values) => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input
-                  id="email"
-                  placeholder="name@example.com"
-                  type="email"
-                  auto-capitalize="none"
-                  auto-complete="email"
-                  auto-correct="off"
-                  :disabled="isLoading"
-                  v-bind="componentField"
-                />
+                <Input id="email" placeholder="name@example.com" type="email" auto-capitalize="none"
+                  auto-complete="email" auto-correct="off" :disabled="isLoading" v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -61,13 +66,8 @@ const onSubmit = handleSubmit(async (values) => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
-                  id="password"
-                  placeholder="name@example.com"
-                  type="password"
-                  :disabled="isLoading"
-                  v-bind="componentField"
-                />
+                <Input id="password" placeholder="name@example.com" type="password" :disabled="isLoading"
+                  v-bind="componentField" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,17 +77,15 @@ const onSubmit = handleSubmit(async (values) => {
 
       <div class="grid gap-2 mb-2">
         <Button type="submit" :disabled="isLoading">
-          <!-- <LucideSpinner v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" /> -->
+          <Loader v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
+
           Giriş Yap
         </Button>
       </div>
       <div class="grid">
         <p class="px-8 text-center text-sm text-muted-foreground">
           Giriş yapamıyor musunuz?
-          <a
-            href="/terms"
-            class="underline underline-offset-4 hover:text-primary"
-          >
+          <a href="/forgot-password" class="underline underline-offset-4 hover:text-primary">
             Şifremi Unuttum
           </a>
         </p>
@@ -103,8 +101,8 @@ const onSubmit = handleSubmit(async (values) => {
         </span>
       </div>
     </div>
-    <Button variant="outline" type="button" :disabled="isLoading">
-      <!-- <LucideSpinner v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" /> -->
+    <Button variant="outline" type="button" :disabled="isLoading" @click="handleClickLogin">
+      <Loader v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
 
       Hesap Oluştur
     </Button>
