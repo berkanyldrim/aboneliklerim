@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/Singup.vue"),
   },
   {
+    path:"/forgot-password",
+    name:"forgot-password",
+    component:()=>import("@/views/ForgotPassword.vue")
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "404",
     component: () => import("@/views/404.vue"),
