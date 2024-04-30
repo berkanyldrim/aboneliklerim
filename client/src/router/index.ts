@@ -21,6 +21,14 @@ const routes: RouteRecordRaw[] = [
       },
       component: () => import("@/views/Dashboard.vue"),
     },
+    {
+      path: "/subscriptions",
+      name: "subscriptions",
+      meta: {
+        type: "subscriptions",
+      },
+      component: () => import("@/views/Subscriptions.vue"),
+    },
 
     ]
   },
