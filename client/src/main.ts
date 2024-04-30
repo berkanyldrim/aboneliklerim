@@ -30,12 +30,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuCheckboxItem,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuGroup
 } from '@/components/ui/dropdown-menu'
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+
+import { Separator } from '@/components/ui/separator'
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
 
 const app = createApp(App);
 
@@ -65,10 +89,27 @@ app.component("TabsList", TabsList);
 app.component("TabsTrigger", TabsTrigger);
 app.component("DropdownMenu", DropdownMenu);
 app.component("DropdownMenuContent", DropdownMenuContent);
+app.component("DropdownMenuCheckboxItem", DropdownMenuCheckboxItem);
 app.component("DropdownMenuItem", DropdownMenuItem);
 app.component("DropdownMenuLabel", DropdownMenuLabel);
 app.component("DropdownMenuSeparator", DropdownMenuSeparator);
 app.component("DropdownMenuTrigger", DropdownMenuTrigger);
 app.component("DropdownMenuGroup", DropdownMenuGroup);
+app.component("Dialog", Dialog);
+app.component("DialogContent", DialogContent);
+app.component("DialogDescription", DialogDescription);
+app.component("DialogFooter", DialogFooter);
+app.component("DialogHeader", DialogHeader);
+app.component("DialogTitle", DialogTitle);
+app.component("DialogTrigger", DialogTrigger);
+app.component("Separator", Separator);
+app.component("Select", Select);
+app.component("SelectContent", SelectContent);
+app.component("SelectGroup", SelectGroup);
+app.component("SelectItem", SelectItem);
+app.component("SelectLabel", SelectLabel);
+app.component("SelectTrigger", SelectTrigger);
+app.component("SelectValue", SelectValue);
+
 
 app.mount("#app");
