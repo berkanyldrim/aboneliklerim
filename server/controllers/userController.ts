@@ -1,4 +1,4 @@
-import { Context } from "https://deno.land/x/oak/mod.ts";
+import { Context } from "../deps.ts";
 // import { User } from "../models/user.ts";
 
 export const getUsers = async (ctx: Context) => {
