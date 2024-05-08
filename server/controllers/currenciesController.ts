@@ -1,13 +1,12 @@
-import { Context , MongoClient} from "../deps.ts";
+import { Context } from "../deps.ts";
 import { Currency } from "../models/currency.ts";
+import  db  from "../connection/mongoDB.ts";
 
-const client = new MongoClient();
-await client.connect("mongodb://localhost:27017/oak-test");
-const db = client.database();
-const currencies = db.collection<Currency[]>("currencies");
+
+const currencies = db.collection("currencies");
 
 export const getCurrencies= async (ctx: Context) => {
-    console.log("geldim currency")
+
   const data = await currencies.find();
     ctx.response.status = 200;
     ctx.response.body = data;
