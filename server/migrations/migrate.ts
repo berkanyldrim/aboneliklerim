@@ -1,10 +1,13 @@
-import { Context,MongoClient } from "../deps.ts";
+// --- Import Context ---
+import { Context } from "../deps.ts";
 
-const client = new MongoClient();
-await client.connect("mongodb://localhost:27017/oak-test");
-const db = client.database();
+// --- Import DB Connection ---
+import db from "../connection/mongoDB.ts"
+
+//NOTE - Currencies Collection
 const currenciesCollection = db.collection("currencies");
 
+//NOTE Migrate Func
 export const migrate = async (ctx: Context) => {
   
     const filePath = "./seeds/currencies.json"
@@ -12,7 +15,7 @@ export const migrate = async (ctx: Context) => {
     try {
         const fileContent = await Deno.readTextFile(filePath);
         const currencies = JSON.parse(fileContent);
-        // MongoDB'ye veri ekleme
+        
         for (const currency of currencies) {
             await currenciesCollection.insertOne(currency);
         }
