@@ -3,11 +3,11 @@ import { Currency } from "../models/currency.ts";
 import  db  from "../connection/mongoDB.ts";
 
 
-const currencies = db.collection("currencies");
+const currencies = db.collection<Currency[]>("currencies");
 
 export const getCurrencies= async (ctx: Context) => {
 
-  const data = await currencies.find();
+  const data = await currencies.find().toArray();
     ctx.response.status = 200;
     ctx.response.body = data;
 };
