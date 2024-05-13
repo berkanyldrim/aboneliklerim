@@ -1,22 +1,29 @@
-// --- Import Token ---
-import token from "../util/token.ts";
-export default {
-  async authorized(ctx: any) {
-    const authorization = ctx.request.headers.get("authorization");
-    if (!authorization) {
-      ctx.response.status = 401; // unauthorised
-      ctx.response.body = { error: "Unauthorized" };
-      return false;
-    }
-    const headerToken = authorization.replace("Bearer ", "");
-    // validate token
-    const isTokenValid = await token.validate(headerToken);
-    if (!isTokenValid) {
-      ctx.response.status = 401; // unauthorised
-      ctx.response.body = { error: "Unauthorized" };
-      return false;
-    }
+// Import Context from Oak
+import { Context } from "../deps.ts";
+// Import Token Verification
+import { verifyToken } from "../util/token.ts";
 
-    return headerToken;
-  },
-};
+export const authMiddleware = async (ctx: Context, next: any) => {
+
+  const headers: Headers = ctx.request.headers;
+  const authorization = headers.get("Authorization");
+
+  if (!authorization) {
+    ctx.response.status = 401;
+    ctx.response.body = { message: "Unauthorized" };
+    return;
+  }
+
+  const token = authorization.split(" ")[1];
+  const isValid = await verifyToken(token);
+
+  if (!isValid) {
+    ctx.response.status = 401;
+    ctx.response.body = { message: "Unauthorized" };
+    return;
+  }
+
+  ctx.state.user = isValid;
+  await next();
+
+}
