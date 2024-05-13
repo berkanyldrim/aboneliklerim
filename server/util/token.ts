@@ -1,39 +1,35 @@
-// --- Import JWT Token Util ---
-import {
-  validateJwt,
-  parseAndDecode,
-  validateJwtObject,
-} from "../deps.ts";
-
-// --- Import JWT Token Util ---
-import {
-  makeJwt,
-  setExpiration,
-  Jose,
-  Payload,
-} from "../deps.ts";
-
+// --- Import Dependencies ---
+import { create, getNumericDate, verify ,Payload,Header,config} from "../deps.ts";
 //NOTE - Secret Key
-const key = "your-secret";
+const env = config();
+const key = env.JWT_SECRET_KEY;
+const encoder = new TextEncoder()
+const keyBuf = encoder.encode(key);
+const createdKey = await crypto.subtle.importKey(
+  "raw",
+  keyBuf,
+  {name: "HMAC", hash: "SHA-256"},
+  true,
+  ["sign", "verify"],
+)
 
-//NOTE - Header
-const header: Jose = {
-  alg: "HS256",
-  typ: "JWT",
+//NOTE - Create Token
+export const createToken = (pay: Object) => {
+  const payload:Payload = {
+     ...pay,
+    exp: getNumericDate(6 * 60 * 60)
+  }
+  const header:Header = {
+    alg: "HS256",
+    typ: "JWT",
+  }
+  return create(header,payload,createdKey);
 };
-
-export default {
-  generate(userId: string): string {
-    const payload: Payload = {
-      uid: userId,
-      exp: setExpiration(new Date().getTime() + 60000 * 60),
-    };
-    return makeJwt({ header, payload, key });
-  },
-  async validate(token: string) {
-    return !!await validateJwt(token, key, { isThrowing: false });
-  },
-  fetchUserId(token: string) {
-    return validateJwtObject(parseAndDecode(token)).payload;
-  },
+//NOTE - Verify Token
+export const verifyToken = async (token: string) => {
+  try {
+    return await verify(token, createdKey, "HS256");
+  } catch (error) {
+    return null;
+  }
 };
