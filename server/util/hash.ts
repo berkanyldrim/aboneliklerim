@@ -1,13 +1,10 @@
 // --- Import Bcrypt ---
-import { bcrypt } from "../deps";
-
-export default {
-  async bcrypt(stringToHash: string): Promise<string> {
-    const hash = await bcrypt.hash(stringToHash);
-    return hash;
-  },
-  async verify(hash: string, text: string): Promise<boolean> {
-    const result = await bcrypt.compare(text, hash);
-    return result;
-  },
+import { bcrypt } from "../deps.ts";
+//NOTE - Hash Password
+export const hashPassword = async (password: string) => {
+  return await bcrypt.hash(password);
+};
+//NOTE - Verify Password
+export const verifyPassword = async (password: string, hash: string) => {
+  return await bcrypt.compare(password, hash);
 };

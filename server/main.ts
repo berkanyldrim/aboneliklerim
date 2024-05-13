@@ -1,20 +1,27 @@
-import { Application,MongoClient } from "./deps.ts";
-import router from "./routes/routes.ts";
+// --- Application Import ---
+import { Application } from "./deps.ts";
+// --- Routes Import ---
+import authRoutes from "./routes/authRoutes.ts";
+import currenciesRoutes from "./routes/currenciesRoutes.ts";
+import migrateRoutes from "./routes/migrateRoutes.ts";
+
+// --- DB Connection Import ---
+import db from "./connection/mongoDB.ts";
 
 const app = new Application();
 const PORT = 8081;
+//NOTE - Auth Routes
+app.use(authRoutes.routes());
+app.use(authRoutes.allowedMethods());
+//NOTE - Migrate Routes
+app.use(migrateRoutes.routes());
+app.use(migrateRoutes.allowedMethods());
+//NOTE - Currencies Routes
+app.use(currenciesRoutes.routes());
+app.use(currenciesRoutes.allowedMethods());
 
-app.use(router.routes());
-app.use(router.allowedMethods());
 
 console.log("Deno project Started");
 console.log("--------------------------------");
 console.log(`Server running on port ${PORT}`);
-
-
-const client = new MongoClient();
-await client.connect("mongodb://localhost:27017/oak-test");
-const db = client.database();
-console.log("Database connected",db);
-
 await app.listen({ port: PORT });

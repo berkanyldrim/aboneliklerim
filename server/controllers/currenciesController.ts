@@ -1,18 +1,17 @@
+// --- Import Router Context ---
 import { Context } from "../deps.ts";
-import { Currency } from "../models/currency.ts";
-import  db  from "../connection/mongoDB.ts";
+// --- Import Currencies Model ---
+import currencies from "../models/currency.ts";
 
-
-const currencies = db.collection<Currency[]>("currencies");
-
-export const getCurrencies= async (ctx: Context) => {
-
-  const data = await currencies.find().toArray();
+//NOTE - Get Currencies
+export const getCurrencies = async (ctx: Context) => {
+  try {
+    const data = await currencies.find({}).toArray();
     ctx.response.status = 200;
-    ctx.response.body = data;
-};
-
-export const createUser = async (ctx: Context) => {
-  ctx.response.body = "Create user";
-  console.log("Create user running");
+    ctx.response.body = { messages: "Currencies Listed", data: data };
+  } catch (error) {
+    console.error("Error fetching currencies:", error);
+    ctx.response.status = 500;
+    ctx.response.body = { messages: "Internal Server Error" };
+  }
 };
