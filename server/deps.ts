@@ -10,5 +10,7 @@ import { create, verify, getNumericDate , type Payload , type Header } from "htt
 
 // --- Import Bcrypt ---
 import * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
+// --- Import Dotenv---
+import { config } from "https://deno.land/x/dotenv/mod.ts";
 
-export { Application, Router,MongoClient,ObjectId,Context, create, verify, getNumericDate , bcrypt, Payload, Header};
+export { Application, Router,MongoClient,ObjectId,Context, create, verify, getNumericDate , bcrypt, Payload, Header,config};
