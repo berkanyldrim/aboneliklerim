@@ -1,21 +1,24 @@
 <script setup lang="ts">
 // --- Import Vue ---
 import { ref } from "vue";
-
 // --- Import Vue Router ---
 import { useRouter } from "vue-router";
-
-// --- Lucide Import ---
+// --- Import Lucide ---
 import { Loader } from 'lucide-vue-next';
-
 // --- Import Utils ---
 import { cn } from "@/lib/utils";
-
 // --- Import Vee Validate ---
 import { useForm } from "vee-validate";
-
 // --- Import Schema ---
 import { loginSchema } from "@/form-schema/login";
+// --- Import Axios ---
+import axios from "axios";
+// --- AuthStore Import ---
+import { useAuthStore } from '@/stores/auth';
+// --- JWT Decode Import ---
+import { jwtDecode } from 'jwt-decode';
+// --- Import Types ---
+import type { JwtPayload } from '@/types/JwtPayload.ts';
 
 //NOTE - useRouter
 const router = useRouter();
@@ -25,20 +28,38 @@ const { handleSubmit } = useForm({
   validationSchema: loginSchema,
 });
 
+//NOTE - useAuthStore
+const authStore = useAuthStore();
+
+
 //NOTE - Ref
 const isLoading = ref(false);
 
 //NOTE - onSubmit
 const onSubmit = handleSubmit(async (values) => {
   isLoading.value = true;
-  console.log(values);
-  setTimeout(() => {
+  await axios.post("/login", values).then((res) => {
+    if (res.status == 200) {
+      const decoded = jwtDecode<JwtPayload>(res?.data?.token);
+      authStore.token = res?.data?.token;
+      authStore.user = {
+        _id: decoded?._id,
+        email: decoded?.email,
+        name: decoded?.name,
+        surname: decoded?.surname,
+      }
+      localStorage.setItem('token', res?.data?.token);
+      isLoading.value = false;
+      router.push("/");
+    }
+  }).catch((err) => {
+    console.log(err);
     isLoading.value = false;
-  }, 3000);
+  });
 });
 
-//NOTE - handleClickLogin
-const handleClickLogin = () => {
+//NOTE - handleClickSingup
+const handleClickSingup = () => {
   router.push('/singup')
 }
 </script>
@@ -101,7 +122,7 @@ const handleClickLogin = () => {
         </span>
       </div>
     </div>
-    <Button variant="outline" type="button" :disabled="isLoading" @click="handleClickLogin">
+    <Button variant="outline" type="button" :disabled="isLoading" @click="handleClickSingup">
       <Loader v-if="isLoading" class="mr-2 h-4 w-4 animate-spin" />
 
       Hesap Oluştur
