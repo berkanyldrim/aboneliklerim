@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserLoginForm from "./components/UserLoginForm.vue";
+import UserLoginForm from "@/components/UserLoginForm.vue";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 </script>

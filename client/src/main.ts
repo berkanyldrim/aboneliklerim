@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { createPinia } from 'pinia';
 import "@/index.css";
 import App from "./App.vue";
 import router from "./router";
@@ -61,9 +62,14 @@ import {
 } from '@/components/ui/select'
 
 
+import { VueQueryPlugin } from '@tanstack/vue-query';
+
+const pinia = createPinia();
 const app = createApp(App);
 
+app.use(pinia);
 app.use(router);
+app.use(VueQueryPlugin);
 
 app.component("Avatar", Avatar);
 app.component("AvatarFallback", AvatarFallback);
