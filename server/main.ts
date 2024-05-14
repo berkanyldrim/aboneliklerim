@@ -4,11 +4,14 @@ import { Application } from "./deps.ts";
 import authRoutes from "./routes/authRoutes.ts";
 import currenciesRoutes from "./routes/currenciesRoutes.ts";
 import migrateRoutes from "./routes/migrateRoutes.ts";
+// --- Import Oak Cors ---
+import { oakCors } from "./deps.ts";
 
 // --- DB Connection Import ---
 import db from "./connection/mongoDB.ts";
 
 const app = new Application();
+app.use(oakCors());
 const PORT = 8081;
 //NOTE - Auth Routes
 app.use(authRoutes.routes());

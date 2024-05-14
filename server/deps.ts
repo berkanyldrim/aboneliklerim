@@ -1,5 +1,7 @@
 // --- Import Oak ---
 import { Application,Router,Context } from "https://deno.land/x/oak@v11.1.0/mod.ts";
+// --- Import Cors ---
+import { oakCors } from "https://deno.land/x/cors/mod.ts";
 // --- Import MongoDB ---
 import {
     MongoClient,ObjectId
@@ -13,4 +15,4 @@ import * as bcrypt from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
 // --- Import Dotenv---
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 
-export { Application, Router,MongoClient,ObjectId,Context, create, verify, getNumericDate , bcrypt, Payload, Header,config};
+export { Application, Router,MongoClient,ObjectId,Context, create, verify, getNumericDate , bcrypt, Payload, Header,config,oakCors};
