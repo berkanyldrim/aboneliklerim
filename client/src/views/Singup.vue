@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import UserSingUpForm from "./components/UserSingUpForm.vue";
+import UserSingUpForm from "@/components/UserSingUpForm.vue";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 </script>
