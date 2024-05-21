@@ -65,25 +65,25 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach(
-//   (
-//     to: RouteLocationNormalized,
-//     from: RouteLocationNormalized,
-//     next: NavigationGuardNext
-//   ) => {
-//     const user = localStorage.getItem("user");
-//     if (to.meta.type === "login" && user) {
-//       next({ name: "home" });
-//       return;
-//     }
+router.beforeEach(
+  (
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext
+  ) => {
+    const token = localStorage.getItem("token");
+    if (to.meta.type === "login" && token && token !== "undefined" && token !== "null" && token !== "") { 
+      next({ name: "dashboard" });
+      return;
+    }
 
-//     if (to.meta.type === "home" && !user) {
-//       next({ name: "login" });
-//       return;
-//     }
+    if (to.meta.type === "dashboard" && !token) {
+      next({ name: "login" });
+      return;
+    }
 
-//     next();
-//   }
-// );
+    next();
+  }
+);
 
 export default router;
