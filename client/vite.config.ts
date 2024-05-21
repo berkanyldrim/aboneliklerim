@@ -17,4 +17,7 @@ export default defineConfig({
       plugins: [tailwind(), autoprefixer()],
     },
   },
+   server: {
+    port: 1907,
+  },
 });
