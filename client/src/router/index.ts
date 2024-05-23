@@ -29,6 +29,14 @@ const routes: RouteRecordRaw[] = [
       },
       component: () => import("@/views/Subscriptions.vue"),
     },
+    {
+      path: "/subscription-add",
+      name: "subscription-add",
+      meta: {
+        type: "subscription-add",
+      },
+      component: () => import("@/views/SubscriptionAdd.vue"),
+    },
 
     ]
   },

@@ -2,7 +2,6 @@
 // --- Components Import ---
 import Container from '@/components/Container.vue';
 import SubscriptionsCard from '@/components/SubscriptionsCard.vue';
-import DialogComponent from '@/components/DialogComponent.vue';
 
 </script>
 
@@ -15,13 +14,7 @@ import DialogComponent from '@/components/DialogComponent.vue';
                         Aboneliklerim
                     </h2>
                     <div class="flex items-center space-x-2">
-                        <Dialog>
-                            <DialogTrigger>
-                                <Button>Ekle</Button>
-                            </DialogTrigger>
-                            <DialogComponent />
-                        </Dialog>
-
+                        <Button>Ekle</Button>
                     </div>
                 </div>
             </div>

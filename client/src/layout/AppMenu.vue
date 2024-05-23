@@ -20,6 +20,11 @@ const menu = ref<MenuItem[]>([
         icon: WalletMinimal,
         to: '/subscriptions',
     },
+    {
+        label: 'Aboneliklerim',
+        icon: WalletMinimal,
+        to: '/subscription-add',
+    },
 ]);
 
 </script>
