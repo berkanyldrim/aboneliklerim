@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devServer: {
     port: 1907
   },
-  modules: ['nuxt-primevue'],
+  modules: ['nuxt-primevue', '@vee-validate/nuxt'],
  primevue: {
 
   },

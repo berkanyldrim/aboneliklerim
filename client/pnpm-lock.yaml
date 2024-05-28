@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@vee-validate/nuxt':
+        specifier: ^4.12.8
+        version: 4.12.8(rollup@4.18.0)(vue@3.4.27)
       nuxt:
         specifier: ^3.11.2
         version: 3.11.2(@opentelemetry/api@1.8.0)(@parcel/watcher@2.4.1)(@types/node@20.12.12)(@unocss/reset@0.60.3)(encoding@0.1.13)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.18.0))(vue@3.4.27))(ioredis@5.4.1)(rollup@4.18.0)(terser@5.31.0)(unocss@0.60.3(postcss@8.4.38)(rollup@4.18.0)(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0)))(vite@5.2.11(@types/node@20.12.12)(terser@5.31.0))
@@ -20,9 +23,6 @@ importers:
       primevue:
         specifier: ^3.52.0
         version: 3.52.0(vue@3.4.27)
-      vee-validate:
-        specifier: ^4.12.8
-        version: 4.12.8(vue@3.4.27)
       vue:
         specifier: ^3.4.27
         version: 3.4.27
@@ -1006,6 +1006,9 @@ packages:
     resolution: {integrity: sha512-I3EOR3g245IGDp3DS17AQAMwNQrh6L6kIlXG3+wt5IZ1zu1ahZmKA8/xxh6oo2TNdu4rI6nQbcLIRn+8eSyfQw==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
+
+  '@vee-validate/nuxt@4.12.8':
+    resolution: {integrity: sha512-etB3bwfvA+gspw7ruN90m1IKG7ptyhLw+HqGzdttUakKG1yNpKzpwRDXIhHzHdf78MtbKk05qqtl5xMoPUGTHQ==}
 
   '@vercel/nft@0.26.5':
     resolution: {integrity: sha512-NHxohEqad6Ra/r4lGknO52uc/GrWILXAMs1BB4401GTqww0fw1bAqzpG1XHuDO+dprg4GvsD9ZLLSsdo78p9hQ==}
@@ -4828,6 +4831,16 @@ snapshots:
       vite: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
     transitivePeerDependencies:
       - rollup
+
+  '@vee-validate/nuxt@4.12.8(rollup@4.18.0)(vue@3.4.27)':
+    dependencies:
+      '@nuxt/kit': 3.11.2(rollup@4.18.0)
+      local-pkg: 0.5.0
+      vee-validate: 4.12.8(vue@3.4.27)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - vue
 
   '@vercel/nft@0.26.5(encoding@0.1.13)':
     dependencies:
