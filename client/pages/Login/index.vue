@@ -72,7 +72,7 @@ const submitHandler = handleSubmit((values) => {
                                 <Checkbox v-model="rememberMe" name="rememberMe" binary />
                                 <label for="ingredient1" class="ml-2 text-sm"> Remember Me </label>
                             </div>
-                            <NuxtLink to="/register" style="text-decoration: none !important;">
+                            <NuxtLink to="/forgot-password" style="text-decoration: none !important;">
                                 <span class="text-sm"> Forgot Password </span>
                             </NuxtLink>
                         </div>
