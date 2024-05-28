@@ -116,7 +116,7 @@ const submitHandler = handleSubmit((values) => {
                             </Divider>
                         </div>
                         <div class="field col-12">
-                            <NuxtLink to="/register">
+                            <NuxtLink to="/login">
                                 <Button text raised label="Go to Login" />
                             </NuxtLink>
                         </div>
