@@ -18,14 +18,15 @@ const { defineField, handleSubmit, errors } = useForm({
 const [email] = defineField('email');
 const [password] = defineField('password');
 //NOTE - Form Submit Handler
-const submitHandler = handleSubmit((values) => {
-    console.log(values);
-    // --- API Call ---
-    // const response = await login(values);
-    // if (response) {
-    //     // --- Redirect ---
-    //     // router.push('/dashboard');
-    // }
+const submitHandler = handleSubmit(async (values) => {
+    const { data: responseData } = await useMyFetch('login', {
+        method: 'POST',
+        body: (values),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log("responseData", responseData.value);
 });
 
 </script>

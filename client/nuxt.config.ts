@@ -4,10 +4,14 @@ export default defineNuxtConfig({
   devServer: {
     port: 1907
   },
-  modules: ['nuxt-primevue', '@vee-validate/nuxt'],
- primevue: {
-
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.API_BASE_URL || 'http://localhost:8081/',
+    },
   },
+  modules: ['nuxt-primevue', '@vee-validate/nuxt','@pinia/nuxt'],
+  primevue: {
+    },
   css: [
     'primevue/resources/themes/aura-dark-noir/theme.css',
     'primevue/resources/primevue.min.css',

@@ -1,0 +1,9 @@
+<script setup>
+</script>
+
+<template>
+    <div>
+        <h1>Access Denied</h1>
+        <p>You do not have the necessary permissions to access this page.</p>
+    </div>
+</template>
