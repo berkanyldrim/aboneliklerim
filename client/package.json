@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.12.8",
     "nuxt": "^3.11.2",
     "primeflex": "^3.3.1",
