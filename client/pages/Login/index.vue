@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+    layout: 'empty'
+})
 // --- Import Vue ---
 import { ref } from 'vue';
 // --- Import VeeValidate ---
@@ -28,7 +31,6 @@ const submitHandler = handleSubmit(async (values) => {
     });
     console.log("responseData", responseData.value);
 });
-
 </script>
 
 <template>

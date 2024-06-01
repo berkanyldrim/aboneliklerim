@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+    layout: 'empty'
+})
 // --- Import Vue ---
 import { ref } from 'vue';
 // --- Import VeeValidate ---

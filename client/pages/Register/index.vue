@@ -1,4 +1,7 @@
 <script setup>
+definePageMeta({
+    layout: 'empty'
+})
 // --- Import VeeValidate ---
 import { useForm, } from 'vee-validate';
 // --- Import Schema & Default Values ---
