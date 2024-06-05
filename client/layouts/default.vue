@@ -14,167 +14,34 @@
                                     d="M30.69 4.21L24.37 4.81L22.57 0.69L22.86 0H26.48L30.69 4.21ZM23.75 5.67L22.66 3.08L18.05 14.24V17.14H19.7H20.03H20.16H20.2L24.1 15.7L30.11 5.19L23.75 5.67ZM4.21002 4.21L10.53 4.81L12.33 0.69L12.05 0H8.43002L4.22002 4.21H4.21002ZM21.9 17.4L20.6 18.2H14.3L13 17.4L12.4 18.2L12.42 18.23L17.45 26.8L22.48 18.23L22.5 18.2L21.9 17.4ZM4.79002 5.19L10.8 15.7L14.7 17.14H14.74H15.2H16.85V14.24L12.24 3.09L11.15 5.68L4.79002 5.2V5.19Z"
                                     fill="var(--text-color)" />
                             </svg>
-                            <span class="font-semibold text-2xl text-primary">Your Logo</span>
-                        </span>
-                        <span>
-                            <Button type="button" @click="closeCallback" icon="pi pi-times" rounded outlined
-                                class="h-2rem w-2rem"></Button>
+                            <span class="font-semibold text-2xl text-primary">Aboneliklerim</span>
+                            <span v-if="isMobile">
+                                <Button type="button" @click="closeCallback" icon="pi pi-times" rounded outlined
+                                    class="h-2rem w-2rem"></Button>
+                            </span>
                         </span>
                     </div>
                     <div class="overflow-y-auto">
-                        <ul class="list-none p-3 m-0">
+                        <ul class="list-none p-3  m-0 overflow-hidden">
                             <li>
-                                <div v-ripple v-styleclass="{
-                                    selector: '@next',
-                                    enterClass: 'hidden',
-                                    enterActiveClass: 'slidedown',
-                                    leaveToClass: 'hidden',
-                                    leaveActiveClass: 'slideup'
-                                }"
-                                    class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple">
-                                    <span class="font-medium">FAVORITES</span>
-                                    <i class="pi pi-chevron-down"></i>
-                                </div>
-                                <ul class="list-none p-0 m-0 overflow-hidden">
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-home mr-2"></i>
-                                            <span class="font-medium">Dashboard</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-bookmark mr-2"></i>
-                                            <span class="font-medium">Bookmarks</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple v-styleclass="{
-                                            selector: '@next',
-                                            enterClass: 'hidden',
-                                            enterActiveClass: 'slidedown',
-                                            leaveToClass: 'hidden',
-                                            leaveActiveClass: 'slideup'
-                                        }"
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-chart-line mr-2"></i>
-                                            <span class="font-medium">Reports</span>
-                                            <i class="pi pi-chevron-down ml-auto"></i>
-                                        </a>
-                                        <ul
-                                            class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
-                                            <li>
-                                                <a v-ripple v-styleclass="{
-                                                    selector: '@next',
-                                                    enterClass: 'hidden',
-                                                    enterActiveClass: 'slidedown',
-                                                    leaveToClass: 'hidden',
-                                                    leaveActiveClass: 'slideup'
-                                                }"
-                                                    class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                    <i class="pi pi-chart-line mr-2"></i>
-                                                    <span class="font-medium">Revenue</span>
-                                                    <i class="pi pi-chevron-down ml-auto"></i>
-                                                </a>
-                                                <ul
-                                                    class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
-                                                    <li>
-                                                        <a v-ripple
-                                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                            <i class="pi pi-table mr-2"></i>
-                                                            <span class="font-medium">View</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a v-ripple
-                                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                            <i class="pi pi-search mr-2"></i>
-                                                            <span class="font-medium">Search</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a v-ripple
-                                                    class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                    <i class="pi pi-chart-line mr-2"></i>
-                                                    <span class="font-medium">Expenses</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-users mr-2"></i>
-                                            <span class="font-medium">Team</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-comments mr-2"></i>
-                                            <span class="font-medium">Messages</span>
-                                            <span
-                                                class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle"
-                                                style="min-width: 1.5rem; height: 1.5rem">3</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-calendar mr-2"></i>
-                                            <span class="font-medium">Calendar</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-cog mr-2"></i>
-                                            <span class="font-medium">Settings</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <NuxtLink to="/" style="text-decoration: none !important;">
+                                    <a v-ripple
+                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <i class="pi pi-home mr-2"></i>
+                                        <span class="font-medium">Ana Sayfa</span>
+                                    </a>
+
+                                </NuxtLink>
+
                             </li>
-                        </ul>
-                        <ul class="list-none p-3 m-0">
                             <li>
-                                <div v-ripple v-styleclass="{
-                                    selector: '@next',
-                                    enterClass: 'hidden',
-                                    enterActiveClass: 'slidedown',
-                                    leaveToClass: 'hidden',
-                                    leaveActiveClass: 'slideup'
-                                }"
-                                    class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple">
-                                    <span class="font-medium">APPLICATION</span>
-                                    <i class="pi pi-chevron-down"></i>
-                                </div>
-                                <ul class="list-none p-0 m-0 overflow-hidden">
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-folder mr-2"></i>
-                                            <span class="font-medium">Projects</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-chart-bar mr-2"></i>
-                                            <span class="font-medium">Performance</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a v-ripple
-                                            class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                            <i class="pi pi-cog mr-2"></i>
-                                            <span class="font-medium">Settings</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <NuxtLink to="/new-subscription" style="text-decoration: none !important;">
+                                    <a v-ripple
+                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                        <i class="pi pi-dollar mr-2"></i>
+                                        <span class="font-medium">Yeni Abonelik Ekle</span>
+                                    </a>
+                                </NuxtLink>
                             </li>
                         </ul>
                     </div>
