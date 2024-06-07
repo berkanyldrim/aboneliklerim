@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       baseURL: process.env.API_BASE_URL || 'http://localhost:8081/',
     },
   },
-  modules: ['nuxt-primevue', '@vee-validate/nuxt','@pinia/nuxt'],
+  modules: ['nuxt-primevue', '@vee-validate/nuxt', '@pinia/nuxt', "@nuxt/image"],
   primevue: {
     },
   css: [
