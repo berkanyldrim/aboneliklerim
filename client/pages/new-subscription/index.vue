@@ -1,14 +1,19 @@
 <script setup>
 // --- Import Vue ---
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 // --- Import VeeValidate ---
 import { useForm, } from 'vee-validate';
 // --- Import Schema & Default Values ---
 import { schema, defaultValues } from '@/validation/subscriptionSchema';
+// --- Import Date-Fns
+import { addDays, addWeeks, addMonths, addYears, format } from 'date-fns';
+import { tr } from 'date-fns/locale'
 
 //NOTE - Ref
 const dayOptions = ref(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']);
 const unitOptions = ref(['Gün', 'Hafta', 'Ay', 'Yıl']);
+const autoRenewalControl = ref('control1');
+const control = ref(false)
 //NOTE - Form Values
 const { defineField, handleSubmit, errors } = useForm({
     validationSchema: schema, initialValues: defaultValues
@@ -34,6 +39,52 @@ const submitHandler = handleSubmit(async (values) => {
     });
     console.log("responseData", responseData.value);
 });
+
+//NOTE - Watch Repetition Time
+watch(() => [autoRenewal.value, repetitionTime.value.value, repetitionTime.value.unit], ([newAutoRenewal, newValue, newUnit]) => {
+
+    console.log("geldim12", newValue)
+    console.log("geldim22", newUnit)
+
+
+    if (repetitionTime?.value?.value && repetitionTime?.value?.unit && repetitionTime?.value?.value != '' && repetitionTime?.value?.unit != '') {
+        if (newAutoRenewal) {
+            autoRenewalControl.value = 'control2';
+            paymentDate.value != '' ? control.value = true : control.value = false
+        }
+        else {
+            autoRenewalControl.value = 'control1';
+            paymentDate.value != '' ? control.value = true : control.value = false
+        }
+    }
+    else if (newValue != '' && newUnit != '' && paymentDate.value != '') {
+        console.log("geldim")
+        control.value = true
+    }
+
+});
+//NOTE - Add Days
+const getDate = () => {
+    if (repetitionTime?.value?.value && repetitionTime?.value?.unit && repetitionTime?.value?.value != '' && repetitionTime?.value?.unit != '') {
+        if (repetitionTime?.value?.unit == 'Gün') {
+            let resultDate = addDays(new Date(paymentDate.value), parseInt(repetitionTime?.value?.value))
+            return format(resultDate, 'dd MMMM yyyy', { locale: tr });
+        }
+        else if (repetitionTime?.value?.unit == 'Hafta') {
+            let resultDate = addWeeks(new Date(paymentDate.value), parseInt(repetitionTime?.value?.value))
+            return format(resultDate, 'dd MMMM yyyy', { locale: tr });
+        }
+        else if (repetitionTime?.value?.unit == 'Ay') {
+            let resultDate = addMonths(new Date(paymentDate.value), parseInt(repetitionTime?.value?.value))
+            return format(resultDate, 'dd MMMM yyyy', { locale: tr });
+        }
+        else if (repetitionTime?.value?.unit == 'Yıl') {
+            let resultDate = addYears(new Date(paymentDate.value), parseInt(repetitionTime?.value?.value))
+            return format(resultDate, 'dd MMMM yyyy', { locale: tr });
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -116,17 +167,26 @@ const submitHandler = handleSubmit(async (values) => {
                                     ?</label>
                                 <Checkbox v-model="autoRenewal" inputId="autoRenewal" name="autoRenewal" binary />
                             </div>
-                            <Message severity="info" :closable="false">Bu abonelik 15 Nisan 2024 Tarihinden itibaren her
-                                ay otomatik olarak yenilenir. </Message>
+                            <Message v-if="autoRenewalControl == 'control2' && control" severity="info"
+                                :closable="false">
+                                <span>Bu abonelik <strong>{{ getDate() }}</strong>
+                                    Tarihinde yenilecektir.
+                                </span>
+                            </Message>
+                            <Message v-if="autoRenewalControl == 'control1' && control" severity="warn"
+                                :closable="false">
+                                <span>Bu
+                                    abonelik <strong>{{ getDate() }}</strong>
+                                    Tarihinde sonlanacaktır.
+                                </span>
+                            </Message>
                         </div>
                         <div class="field  md:col-6 sm:col-12 flex justify-content-end align-items-center">
                             <Button class="max-h-3rem" label="Abonelik Ekle" type="submit" style="max-width: 150px;" />
                         </div>
-
                     </div>
                 </template>
             </Card>
-
         </div>
     </form>
 
