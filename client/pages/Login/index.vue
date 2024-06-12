@@ -8,6 +8,13 @@ import { ref } from 'vue';
 import { useForm, } from 'vee-validate';
 // --- Import Schema & Default Values ---
 import { schema, defaultValues } from '@/validation/loginSchema';
+// --- Import AuthStore ---
+import { useAuthStore } from '~/stores/auth';
+// --- Import JWT Decode ---
+import {jwtDecode} from "jwt-decode";
+
+//NOTE - Use Auth Store
+const authStore = useAuthStore();
 
 //NOTE - Ref
 const rememberMe = ref(false);
@@ -17,19 +24,31 @@ const { defineField, handleSubmit, errors } = useForm({
     validationSchema: schema, initialValues: defaultValues
 });
 
+const router = useRouter()
+
 //NOTE - Form Fields
 const [email] = defineField('email');
 const [password] = defineField('password');
 //NOTE - Form Submit Handler
 const submitHandler = handleSubmit(async (values) => {
-    const { data: responseData } = await useMyFetch('login', {
+    const { data,error } = await useMyFetch('login', {
         method: 'POST',
         body: (values),
         headers: {
             'Content-Type': 'application/json'
         }
     });
-    console.log("responseData", responseData.value);
+    if(data.value && data.value.token){
+        authStore.setToken(data.value.token);
+        const decoded = jwtDecode(data.value.token);
+        authStore.setUser(decoded);
+        router.push('/')
+
+    }
+    else{
+        console.log(error);
+    }
+
 });
 </script>
 

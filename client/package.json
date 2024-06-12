@@ -14,7 +14,9 @@
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/nuxt": "^4.12.8",
     "date-fns": "^3.6.0",
+    "jwt-decode": "^4.0.0",
     "nuxt": "^3.11.2",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primevue": "^3.52.0",
@@ -23,6 +25,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "nuxt-primevue": "^0.3.1"
   }
 }
